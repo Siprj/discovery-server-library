@@ -9,5 +9,5 @@ Protocol is rather simple. Server is sending broadcast messages and receiving re
 Message flow
 ------------
 
-1. Server send discover broadcast message: <<DISCOVERY>>
-2. Device which receive discovery message send response in format: <<DISCOVERY: xxx.xxx.xxx.xxx>>
+1. Server send discover broadcast message: \<\<DISCOVERY\>\>
+2. Device which receive discovery message send response in format: \<\<DISCOVERY: xxx.xxx.xxx.xxx\>\>
