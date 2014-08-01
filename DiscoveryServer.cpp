@@ -5,7 +5,7 @@
 #include <QRegExp>
 #include <QStringList>
 
-#define DISCOVERY_WORD_SIZE 3           // Nunber of word slpited by spaces
+#define DISCOVERY_WORD_SIZE 3           // Number of word splitted by spaces
 #define DISCOVERY_POSITION_OF_IP 1      // Number of IP in message
 #define DISCOVERY_POSITION_OF_NAME 2    // Number of Device Name
 #define DISCOVERY_RESPONCE_PREFIX "<<DISCOVERY:"    // First part of response (first word)
@@ -81,7 +81,7 @@ bool DiscoveryServer::insertDevice(QHostAddress ipAddress, QString string)
         }
     }
 
-    if(!deviceExist)        //device dont exist insert it in to map
+    if(!deviceExist)        //device don't exist insert it in to map
     {
         qDebug()<<"device don exist";
         deviceMap.insert(string, ipAddress);
@@ -117,7 +117,7 @@ void DiscoveryServer::discover()                        // send discovery datagr
     QByteArray datagram;
     datagram.append(QString(DISCOVERY_QUESTION));
     if(bindAddress == QHostAddress::Any)  // check if udpSocket is binded to all network or only to one
-    {                                                   // dont use bindAddress for this purpose
+    {                                                   // don't use bindAddress for this purpose
         sendBroadcastToAll(&datagram);
     }
     else
@@ -149,7 +149,7 @@ void DiscoveryServer::clearDeviceMap()
 
 void DiscoveryServer::precessPendingDatagram()
 {
-    int discoveryUpdated = 0;        //variable for controling if discovery shut emit updated
+    int discoveryUpdated = 0;        //variable for controlling if discovery shut emit updated
 
     while (udpSocket->hasPendingDatagrams())
     {
@@ -162,7 +162,7 @@ void DiscoveryServer::precessPendingDatagram()
         //validate packet format
         if(!str.contains(QRegExp("^"DISCOVERY_RESPONCE_PREFIX" "DISCOVERY_IP_REGEXP_VALIDATOR".*"DISCOVERY_RESPONCE_END)))
         {
-            qDebug()<<"Discovery responce error, invalide packet fromat";
+            qDebug()<<"Discovery response error, invalid packet format";
             break;      //packet format is not valid
         }
 
@@ -170,7 +170,7 @@ void DiscoveryServer::precessPendingDatagram()
         QStringList list = str.split(' ');
         if(list.size() >= DISCOVERY_WORD_SIZE)      // check if the message have right number of parts
         {
-            if(list.at(0) == DISCOVERY_RESPONCE_PREFIX)    //if this is true, than discavery reply chase been received
+            if(list.at(0) == DISCOVERY_RESPONCE_PREFIX)    //if this is true, than discovery reply chase been received
             {
                 QString deviceIpStr, deviceString;
                 deviceIpStr = list.at(DISCOVERY_POSITION_OF_IP);
@@ -189,7 +189,7 @@ void DiscoveryServer::precessPendingDatagram()
         }
         else
         {
-            qDebug()<<"Discovery responce error, device send wrong string";
+            qDebug()<<"Discovery response error, device send wrong string";
         }
     }
     if(discoveryUpdated)
