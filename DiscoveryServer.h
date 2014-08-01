@@ -43,7 +43,7 @@ private slots:
 
 
 private:
-    void sendBroadcastToAll(QByteArray *data);              //this is responsible for sending broadcast on every interface and every addres on interface
+    void sendBroadcastToAll(QByteArray *data);              //this is responsible for sending broadcast on every interface and every address on interface
     bool insertDevice(QHostAddress ipAddress, QString string);      //return true if new device added otherwise return false
 
     QHostAddress bindAddress;               // UDP addrfess where to listen for response
